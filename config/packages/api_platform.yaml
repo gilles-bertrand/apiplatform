@@ -1,7 +1,13 @@
 api_platform:
+    allow_plain_identifiers: false
+    formats:
+        jsonapi:  ['application/vnd.api+json']
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
         json: ['application/merge-patch+json']
+        jsonapi:  ['application/vnd.api+json']
+    error_formats:
+        jsonapi:  ['application/vnd.api+json']
     swagger:
         versions: [3]

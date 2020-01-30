@@ -1,0 +1,533 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "",
+        "version": "0.0.0"
+    },
+    "paths": {
+        "\/api\/addresses": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "getAddressCollection",
+                "summary": "Retrieves the collection of Address resources.",
+                "responses": {
+                    "200": {
+                        "description": "Address collection response",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Address"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "postAddressCollection",
+                "summary": "Creates a Address resource.",
+                "responses": {
+                    "201": {
+                        "description": "Address resource created",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Address"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetAddressItem": {
+                                "parameters": {
+                                    "id": "$response.body#\/id"
+                                },
+                                "operationId": "getAddressItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET \/api\/addresses\/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Address"
+                            }
+                        }
+                    },
+                    "description": "The new Address resource"
+                }
+            }
+        },
+        "\/api\/addresses\/{id}": {
+            "get": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "getAddressItem",
+                "summary": "Retrieves a Address resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address resource response",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Address"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "deleteAddressItem",
+                "summary": "Removes the Address resource.",
+                "responses": {
+                    "204": {
+                        "description": "Address resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "putAddressItem",
+                "summary": "Replaces the Address resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address resource updated",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Address"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Address"
+                            }
+                        }
+                    },
+                    "description": "The updated Address resource"
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Address"
+                ],
+                "operationId": "patchAddressItem",
+                "summary": "Updates the Address resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Address resource updated",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Address"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Address"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Address"
+                            }
+                        }
+                    },
+                    "description": "The updated Address resource"
+                }
+            }
+        },
+        "\/api\/beneficiaries": {
+            "get": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "getBeneficiaryCollection",
+                "summary": "Retrieves the collection of Beneficiary resources.",
+                "responses": {
+                    "200": {
+                        "description": "Beneficiary collection response",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Beneficiary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        }
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "postBeneficiaryCollection",
+                "summary": "Creates a Beneficiary resource.",
+                "responses": {
+                    "201": {
+                        "description": "Beneficiary resource created",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Beneficiary"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetBeneficiaryItem": {
+                                "parameters": {
+                                    "id": "$response.body#\/id"
+                                },
+                                "operationId": "getBeneficiaryItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET \/api\/beneficiaries\/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beneficiary"
+                            }
+                        }
+                    },
+                    "description": "The new Beneficiary resource"
+                }
+            }
+        },
+        "\/api\/beneficiaries\/{id}": {
+            "get": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "getBeneficiaryItem",
+                "summary": "Retrieves a Beneficiary resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Beneficiary resource response",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Beneficiary"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "deleteBeneficiaryItem",
+                "summary": "Removes the Beneficiary resource.",
+                "responses": {
+                    "204": {
+                        "description": "Beneficiary resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "putBeneficiaryItem",
+                "summary": "Replaces the Beneficiary resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Beneficiary resource updated",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Beneficiary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beneficiary"
+                            }
+                        }
+                    },
+                    "description": "The updated Beneficiary resource"
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Beneficiary"
+                ],
+                "operationId": "patchBeneficiaryItem",
+                "summary": "Updates the Beneficiary resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Beneficiary resource updated",
+                        "content": {
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Beneficiary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/merge-patch+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beneficiary"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Beneficiary"
+                            }
+                        }
+                    },
+                    "description": "The updated Beneficiary resource"
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Address": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "street": {
+                        "type": "string"
+                    },
+                    "number": {
+                        "type": "integer"
+                    },
+                    "postalCode": {
+                        "type": "integer"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "beneficiaries": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    }
+                }
+            },
+            "Beneficiary": {
+                "type": "object",
+                "description": "",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "firstname": {
+                        "type": "string"
+                    },
+                    "lastname": {
+                        "type": "string"
+                    },
+                    "addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "iri-reference"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
