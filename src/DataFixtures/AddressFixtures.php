@@ -8,6 +8,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AddressFixtures extends Fixture
 {
+    public const CPAS_CHARLEROI_ADDRESS_REFERENCE = 'cpas-charleroi-address';
+
     public function load(ObjectManager $manager)
     {
         $address = new Address();
@@ -17,6 +19,7 @@ class AddressFixtures extends Fixture
             ->setPostalCode(6000)
             ->setCity("Charleroi");
         $manager->persist($address);
+        $this->addReference(self::CPAS_CHARLEROI_ADDRESS_REFERENCE, $address);
 
         $manager->flush();
     }
