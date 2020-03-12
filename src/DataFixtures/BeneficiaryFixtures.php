@@ -18,7 +18,7 @@ class BeneficiaryFixtures extends Fixture implements DependentFixtureInterface
             $beneficiary = new Beneficiary();
             $beneficiary
                 ->setLastname($faker->lastName)
-                ->addAddress($this->getReference(AddressFixtures::CPAS_CHARLEROI_ADDRESS_REFERENCE));
+                ->addAddress($this->getReference("address-" . $i));
             
             if ($i<50) {
                 $beneficiary
